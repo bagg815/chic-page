@@ -1,11 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF--8" />
+    <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chic Threads Boutique</title>
+
+    <!-- PWA & SEO Enhancements -->
+    <meta name="description" content="A modern, visually appealing static e-commerce website for a fictional clothing brand, Chic Threads. Discover our curated collection of ethically crafted pieces designed to last a lifetime." />
+    <meta name="theme-color" content="#292524" />
+    <link rel="manifest" href="/manifest.json" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       /* Custom scrollbar for a more modern look */
@@ -36,5 +41,18 @@
   <body class="bg-stone-50 text-stone-800">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

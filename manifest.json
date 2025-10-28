@@ -1,0 +1,23 @@
+{
+  "name": "Chic Threads Boutique",
+  "short_name": "Chic Threads",
+  "description": "A modern, visually appealing static e-commerce website for a fictional clothing brand, Chic Threads.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fafaf9",
+  "theme_color": "#292524",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

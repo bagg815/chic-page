@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Product } from '../types';
 import { PlusIcon } from './icons';
@@ -11,10 +10,11 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
     <div className="group relative flex flex-col">
-      <div className="aspect-w-4 aspect-h-5 w-full overflow-hidden rounded-lg bg-stone-200">
+      <div className="aspect-[4/5] w-full overflow-hidden rounded-lg bg-stone-200">
         <img
           src={product.imageUrl}
           alt={product.name}
+          loading="lazy"
           className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
         />
       </div>
@@ -32,7 +32,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       </div>
        <button 
         onClick={() => onAddToCart(product)}
-        className="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-stone-800 py-2 px-8 text-sm font-medium text-white hover:bg-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 transition-all duration-300 opacity-0 group-hover:opacity-100"
+        className="mt-4 flex w-full items-center justify-center rounded-md border border-stone-300 bg-white py-2 px-8 text-sm font-medium text-stone-800 hover:bg-stone-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 transition-all duration-300"
+        aria-label={`Add ${product.name} to cart`}
        >
          Add to Cart <PlusIcon />
        </button>

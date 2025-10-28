@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CartItem } from '../types';
 import { CloseIcon, TrashIcon } from './icons';
@@ -20,14 +19,20 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, cartItems, onRemove, onUpd
       <div 
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={onClose}
+        aria-hidden="true"
       ></div>
 
       {/* Cart Panel */}
-      <div className={`fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div 
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cart-heading"
+        className={`fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-6 border-b">
-            <h2 className="text-lg font-medium text-stone-900">Shopping Cart</h2>
-            <button onClick={onClose} className="text-stone-500 hover:text-stone-800">
+            <h2 id="cart-heading" className="text-lg font-medium text-stone-900">Shopping Cart</h2>
+            <button onClick={onClose} className="text-stone-500 hover:text-stone-800" aria-label="Close cart">
               <CloseIcon />
             </button>
           </div>
@@ -54,9 +59,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, cartItems, onRemove, onUpd
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
                         <div className="flex items-center border rounded">
-                          <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 text-stone-600 hover:bg-stone-100">-</button>
-                          <p className="w-8 text-center">{item.quantity}</p>
-                          <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)} className="px-2 py-1 text-stone-600 hover:bg-stone-100">+</button>
+                          <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 text-stone-600 hover:bg-stone-100" aria-label={`Decrease quantity of ${item.name}`}>-</button>
+                          <p className="w-8 text-center" aria-live="polite">
+                            <span className="sr-only">Quantity:</span>
+                            {item.quantity}
+                          </p>
+                          <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)} className="px-2 py-1 text-stone-600 hover:bg-stone-100" aria-label={`Increase quantity of ${item.name}`}>+</button>
                         </div>
                         <div className="flex">
                           <button type="button" onClick={() => onRemove(item.id)} className="font-medium text-rose-600 hover:text-rose-500 flex items-center gap-1">
