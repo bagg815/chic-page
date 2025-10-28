@@ -1,0 +1,5 @@
+{
+  "name": "Chic Threads Boutique",
+  "description": "A modern, visually appealing static e-commerce website for a fictional clothing brand, Chic Threads. It features a product catalog, a functional client-side shopping cart, and a fully responsive design built with React, TypeScript, and Tailwind CSS.",
+  "requestFramePermissions": []
+}
